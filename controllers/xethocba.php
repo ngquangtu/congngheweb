@@ -1,17 +1,23 @@
 <?php
+   include("../lib/connection.php");
+
         include('header.php')
     ?>
-    <form action="xl_hosoxettuyen.php" method="post">
-     <div class="main">
+
+
+    <form action="xl_hosoxettuyen.php" enctype="multipart/form-data" method="post"  name="myform" onsubmit=" return myFunction()">
+    <!-- <form action="" enctype="multipart/form-data" method="post"  name="myform" onsubmit="myFunction()" > -->
+     <!-- <div class="main"> -->
      <div class="container main-xethocba">
-        <h2 style="padding-top: 29px;" >XÉT TUYỂN HỌC BẠ </h2>
+        <h2 style="padding-top: 29px;"  onclick=" return myFunction()"  >XÉT TUYỂN HỌC BẠ </h2>
         <div class="header-child style-1"  ><div class="stt"><span class="ng-tns-c19-1">1</span></div><div class="content-header"><h2 class="header-title-child" >THÔNG TIN THÍ SINH</h2></div></div>
      <div class="row">
         <div class="col-md-4">
-            <input class="input-group input-by-me" type="text" placeholder="Họ" name="ho">
+            <input class="input-group input-by-me" type="text" placeholder="Họ"  id ="ho"  name="ho">
+            
         </div>
         <div class="col-md-4">
-            <input class="input-group input-by-me" type="text" placeholder="Tên" name="ten">
+            <input class="input-group input-by-me" type="text" placeholder="Tên"  id="ten" name="ten">
         </div>
         <div class="col-md-4">
                     <input  class="input-group input-by-me" data-date-format="dd-mm-yyyy" type="date" id="start" name="ngaysinh"
@@ -19,7 +25,7 @@
                 min="01-01-1990" max="01-01-1990">
         </div>
         <div class="col-md-4">
-        <input class="input-group input-by-me" type="text" placeholder="CMND" name="CMND">
+        <input class="input-group input-by-me" type="text" placeholder="CMND" id="CMND" name="CMND">
         </div>
         <div class="col-md-4">
                         
@@ -30,10 +36,10 @@
                     </select>
         </div>
         <div class="col-md-4">
-        <input class="input-group input-by-me" type="text" placeholder="SĐT" name="SDT">
+        <input class="input-group input-by-me" type="text" placeholder="SĐT"  id="SDT"  name="SDT">
         </div>
         <div class="col-md-4">
-        <input class="input-group input-by-me" type="text" placeholder="Email" name="email">
+        <input class="input-group input-by-me" type="text" placeholder="Email" id="email"  name="email">
         </div>
         <div class="col-md-4">
                      <select class="input-group input-by-me" name="khuvucuutien" >
@@ -59,32 +65,131 @@
      <h3 class="text-bold">Địa chỉ thường trú</h3>
 
     <div class="row">
+
+
+
     <div class="col-md-4">
-        <input class="input-group input-by-me" type="text" placeholder="Tỉnh / Thành phố thường trú" name="thanhphothuongtru">
+        <!-- <input class="input-group input-by-me" type="text" placeholder="Tỉnh / Thành phố tạm trú"  name="thanhphotamtru"> -->
+        <input class="input-group input-by-me" list="listthanhpho"   placeholder="Tỉnh / Thành phố thường trú"  id="thanhphothuongtru" name="thanhphothuongtru" >
+                <datalist id="listthanhpho">
+                       <?php 
+                       $sql = "SELECT * FROM `devvn_tinhthanhpho`";
+                       $result = $conn->query($sql);
+                       
+                       if ($result->num_rows > 0) {
+                         // output data of each row
+                         while($row = $result->fetch_assoc()) {
+                           echo " <option value=' ".$row['name']."'>";
+                         }
+                       } 
+                       ?>
+                </datalist>  
     </div>
     <div class="col-md-4">
-        <input class="input-group input-by-me" type="text" placeholder="Quân / Huyện thường trú" name="quanhuyenthuongtru">
+    <input class="input-group input-by-me" list="listquanhuyen"  placeholder="Quận / huyện thường trú" id="quanhuyenthuongtru"  name="quanhuyenthuongtru" >
+                <datalist id="listquanhuyen">
+                       <?php 
+                       $sql = "SELECT * FROM `devvn_quanhuyen`";
+                       $result = $conn->query($sql);
+                       
+                       if ($result->num_rows > 0) {
+                         // output data of each row
+                         while($row = $result->fetch_assoc()) {
+                           echo " <option value=' ".$row['name']."'>";
+                         }
+                       } 
+                       ?>
+                </datalist>  
     </div>
     <div class="col-md-4">
-        <input class="input-group input-by-me" type="text" placeholder="Phường xã thường trú" name="phuongxathuongtru">
+    <input class="input-group input-by-me" list="listxapuong"  placeholder="Phường / xã thường trú" id="phuongxathuongtru"  name="phuongxathuongtru" >
+                <datalist id="listxapuong">
+                       <?php 
+                       $sql = "SELECT * FROM `devvn_xaphuongthitran`";
+                       $result = $conn->query($sql);
+                       
+                       if ($result->num_rows > 0) {
+                         // output data of each row
+                         while($row = $result->fetch_assoc()) {
+                           echo " <option value=' ".$row['name']."'>";
+                         }
+                       } 
+                       ?>
+                </datalist>  
     </div>
+
+
+
+
+
+
+
+
+
     <div class="col-md-12">
-        <input class="input-group input-by-me" type="text" placeholder="Địa chỉ thường trú " name="diachithuongtru">
+        <input class="input-group input-by-me" type="text" placeholder="Địa chỉ thường trú " id ="diachithuongtru" name="diachithuongtru">
         </div>
     </div>
 
     <h3 class="text-bold">Địa chỉ tạm trú   <input type="checkbox"  name="liketop" value="liketop" > <span  class="like-top" > như trên</span></h3>
 
     <div class="row">
+
+
+
     <div class="col-md-4">
-        <input class="input-group input-by-me" type="text" placeholder="Tỉnh / Thành phố tạm trú"  name="thanhphotamtru">
+        <!-- <input class="input-group input-by-me" type="text" placeholder="Tỉnh / Thành phố tạm trú"  name="thanhphotamtru"> -->
+        <input class="input-group input-by-me" list="listthanhpho2"   placeholder="Tỉnh / Thành phố tạm trú"  name="thanhphotamtru" >
+                <datalist id="listthanhpho2">
+                       <?php 
+                       $sql = "SELECT * FROM `devvn_tinhthanhpho`";
+                       $result = $conn->query($sql);
+                       
+                       if ($result->num_rows > 0) {
+                         // output data of each row
+                         while($row = $result->fetch_assoc()) {
+                           echo " <option value=' ".$row['name']."'>";
+                         }
+                       } 
+                       ?>
+                </datalist>  
     </div>
     <div class="col-md-4">
-        <input class="input-group input-by-me" type="text" placeholder="Quân / Huyện tạm trú" name="quanhuyentamtru">
+    <input class="input-group input-by-me" list="listquanhuyen2"  placeholder="Quận / huyện tạm trú"  name="quanhuyentamtru" >
+                <datalist id="listquanhuyen2">
+                       <?php 
+                       $sql = "SELECT * FROM `devvn_quanhuyen`";
+                       $result = $conn->query($sql);
+                       
+                       if ($result->num_rows > 0) {
+                         // output data of each row
+                         while($row = $result->fetch_assoc()) {
+                           echo " <option value=' ".$row['name']."'>";
+                         }
+                       } 
+                       ?>
+                </datalist>  
     </div>
     <div class="col-md-4">
-        <input class="input-group input-by-me" type="text" placeholder="Phường xã tạm trú" name="phuongxatamtru">
+    <input class="input-group input-by-me" list="listxaphuong2"  placeholder="Phường / xã tạm trú"  name="phuongxatamtru" >
+                <datalist id="listxaphuong2">
+                       <?php 
+                       $sql = "SELECT * FROM `devvn_xaphuongthitran`";
+                       $result = $conn->query($sql);
+                       
+                       if ($result->num_rows > 0) {
+                         // output data of each row
+                         while($row = $result->fetch_assoc()) {
+                           echo " <option value=' ".$row['name']."'>";
+                         }
+                       } 
+                       ?>
+                </datalist>  
     </div>
+
+
+
+
     <div class="col-md-12">
         <input class="input-group input-by-me" type="text" placeholder="Địa chỉ  trú tạm" name="diachitamtru">
         </div>
@@ -92,13 +197,13 @@
     <h3 class="text-bold">Tên trường THPT lớp 12 </h3>
     <div class="row">
     <div class="col-md-8">
-        <input class="input-group input-by-me" type="text" placeholder="Trường lớp 12" name="truong12">
+        <input class="input-group input-by-me" type="text" placeholder="Trường lớp 12" id="truong12" name="truong12">
     </div>
     <div class="col-md-2">
-        <input class="input-group input-by-me" type="text" placeholder="Mã trường lớp 12" name="matruonglop12">
+        <input class="input-group input-by-me" type="text" placeholder="Mã trường lớp 12" id="matruonglop12" name="matruonglop12">
     </div>
     <div class="col-md-2">
-        <input class="input-group input-by-me" type="text" placeholder="Mã tỉnh lớp 12" name="matinhlop12">
+        <input class="input-group input-by-me" type="text" placeholder="Mã tỉnh lớp 12"  id="matinhlop12" name="matinhlop12">
     </div>
     <div class="col-md-4">
                       <select class="input-group input-by-me" name="hanhkiemlop12" >
@@ -125,29 +230,50 @@
 
 
 
+
+
+
+
     <div class="header-child style-1"><div class="stt"><span class="ng-tns-c19-1">2</span></div><div class="content-header"><h2 class="header-title-child">THÔNG TIN ĐĂNG KÝ</h2></div></div>
-        <div class="row">
-        <div class="col-md-1">
-            số thứ tự
+       
+       
+        <div class="row" >
+        <div class="col-md-4">
+            <p style=" line-height: 3;"> Nguyện Vọng 1 :</p>
              <!-- <input  class="input-group input-by-me" type="number" id="quantity"name="number" value="2020" min="1" max="3"> -->
         </div>
         <div class="col-md-4">
-                      <select class="input-group input-by-me" name="nguyenvong" id="cars">
+                      <select class="input-group input-by-me" name="nguyenvong1" id="cars">
                             <option value="volvo">Volvo</option>
                             <option value="saab">Saab</option>
                             <option value="mercedes">Mercedes</option>
                             <option value="audi">Audi</option>
                     </select>
         </div>
-        <div class="col-md-3">
-                Tổ hợp môn
-                      <!-- <select class="input-group input-by-me" name="cars" id="cars">
-                            <option value="volvo">Volvo</option>
-                            <option value="saab">Saab</option>
-                            <option value="mercedes">Mercedes</option>
-                            <option value="audi">Audi</option>
-                    </select> -->
+      
+        <div class="col-md-4">
+                        <p class="btn btn-primary " onclick="themnguyenvong()">Thêm Nguyện Vọng</p>
         </div>
+        <div  class="row col-md-12"id="nguyenvong" >
+        
+        
+        
+        
+        
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <div class="col-md-12">
             <table class="table">
@@ -227,12 +353,12 @@
         <div class="upfile">
                 <div class="upload-file">
                 Hình ảnh 3x4
-                <input type="file"  name="anhthe"></td>
+                <input type="file" id="anhthe" name="anhthe[]" multiple /></td>
                 </div>
                 <hr class="hr">
                 <div class="upload-file">
                 Học Bạ THPT
-                <input type="file"  name="hocba"></td>
+                <input type="file" id="hocba" name="hocba[]" multiple /></td>
                 </div>
                 <hr class="hr">
 
@@ -244,8 +370,10 @@
      <p class="ng-tns-c19-1" style="text-align: center;">Tôi xin cam đoan những lời khai trong đơn đăng ký xét tuyển này là đúng sự thật. Nếu sai tôi xin chịu xử lý theo quy chế Tuyển sinh của Bộ GD &amp; ĐT.</p>
      
       
-        <input  class="btn btn-primary " style="    margin-left: 75%;     margin-bottom: 20px;"  type="submit" value="Đăng ký" >
-        </form>
+        <input  class="btn btn-primary " style=" margin-left: 75%;margin-bottom: 20px;"  type="submit" value="Đăng ký" >
+    
+      </form>
+        
       <?php
         include('footer.php')
     ?>

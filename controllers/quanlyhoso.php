@@ -1,8 +1,10 @@
 <?php
    include("../lib/connection.php");
-   include('header.php');
-
+   include("header.php"); 
 ?>
+
+
+
 
 
 
@@ -11,14 +13,14 @@
   <p>Type something in the input field to search the table for first names, last names or emails:</p>  
   <input class="form-control" id="myInput" type="text" placeholder="Search..">
   <br>
+
+  <div style="overflow-x:auto;">
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>Họ Tên</th>
-        <th>CMND</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
         <th>Email</th>
-   
-        <th></th>
       </tr>
     </thead>
     <tbody id="myTable">
@@ -31,9 +33,11 @@ if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
     echo "<tr>
-    <td>".$row['ho']." ".$row['ten']."</td>
+    <td>".$row['ho']."</td>
+    <td>".$row['ten']."</td>
     <td>".$row['CMND']."</td>
-    <td>".$row['email']."</td>
+    <td><a href='infoHS.php?id=".$row['id']."'>Xem</a></td>
+
   </tr>";
   }
 } 
@@ -41,10 +45,24 @@ if ($result->num_rows > 0) {
  $conn->close();
      
      ?>
-      
+      <tr>
+        <td>Mary</td>
+        <td>Moe</td>
+        <td>mary@mail.com</td>
+      </tr>
+      <tr>
+        <td>July</td>
+        <td>Dooley</td>
+        <td>july@greatstuff.com</td>
+      </tr>
+      <tr>
+        <td>Anja</td>
+        <td>Ravendale</td>
+        <td>a_r@test.com</td>
+      </tr>
     </tbody>
   </table>
-  
+  </div>
   <p>Note that we start the search in tbody, to prevent filtering the table headers.</p>
 </div>
 
@@ -64,6 +82,13 @@ $(document).ready(function(){
 
 
 
-<?php
-    include('footer.php');
+
+
+
+
+
+
+   <?php
+   include("footer.php");  
+
 ?>
