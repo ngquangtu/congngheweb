@@ -17,33 +17,49 @@
     <link rel="stylesheet" href="../assets/css/smoothproducts.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../assets/css/sua.css">
 </head>
 <script>
 function myFunction() {
-        var ho = document.getElementById("ho").value;
-        var ten = document.getElementById("ten").value;
-        var CMND = document.getElementById("CMND").value;
-        var SDT = document.getElementById("SDT").value;
-        var email = document.getElementById("email").value;
-        var thanhphothuongtru = document.getElementById("thanhphothuongtru").value;
-        var quanhuyenthuongtru = document.getElementById("quanhuyenthuongtru").value;
-        var phuongxathuongtru = document.getElementById("phuongxathuongtru").value;
-        var diachithuongtru = document.getElementById("diachithuongtru").value;
-        var matruonglop12 = document.getElementById("matruonglop12").value;
-        var truong12 = document.getElementById("truong12").value;
-        var matinhlop12 = document.getElementById("matinhlop12").value;
-        if (truong12 == null || ho == null ||ten == null ||  CMND == null || 
-         SDT == null || email == null || thanhphothuongtru == null || quanhuyenthuongtru == null ||
-         phuongxathuongtru == null || diachithuongtru == null || matruonglop12 == null || 
-         matinhlop12 == null  ||
-         truong12 == "" || ho == "" ||ten == "" || CMND == "" || 
-         SDT == "" || email == "" || thanhphothuongtru == "" || quanhuyenthuongtru == "" ||
-         phuongxathuongtru == "" || diachithuongtru == "" || matruonglop12 == "" || 
-         matinhlop12 == "" 
+        var ho                     = document.getElementById("ho").value;
+        var ten                    = document.getElementById("ten").value;
+        var CMND                   = document.getElementById("CMND").value;
+        var SDT                    = document.getElementById("SDT").value;
+        var email                  = document.getElementById("email").value;
+        var thanhphothuongtru      = document.getElementById("thanhphothuongtru").value;
+        var quanhuyenthuongtru     = document.getElementById("quanhuyenthuongtru").value;
+        var phuongxathuongtru      = document.getElementById("phuongxathuongtru").value;
+        var diachithuongtru        = document.getElementById("diachithuongtru").value;
+        var matruonglop12          = document.getElementById("matruonglop12").value;
+        var truong12               = document.getElementById("truong12").value;
+        var matinhlop12            = document.getElementById("matinhlop12").value;
+        if (truong12                 == null || 
+            ho                       == null ||
+            ten                      == null ||  
+            CMND                     == null || 
+            SDT                      == null || 
+            email                    == null ||
+            thanhphothuongtru        == null ||
+            quanhuyenthuongtru       == null ||
+            phuongxathuongtru        == null ||
+            diachithuongtru          == null ||
+            matruonglop12            == null || 
+            matinhlop12              == null ||
+            truong12                 == "" ||
+            ho                       == "" ||
+            ten                      == "" || 
+            CMND                     == "" || 
+            SDT                      == "" || 
+            email                    == "" || 
+            thanhphothuongtru        == "" || 
+            quanhuyenthuongtru       == "" ||
+            phuongxathuongtru        == "" || 
+            diachithuongtru          == "" || 
+            matruonglop12            == "" || 
+            matinhlop12              == "" 
          ) 
          {
              
@@ -55,9 +71,12 @@ var nv = 1
 function themnguyenvong() {
     nv++;
     if(nv<=3){
-       
-   
-        $("#nguyenvong").append("<div class='col-md-4'><p style=' line-height: 3;'> Nguyện Vọng "+ nv +" :</p></div><div class='col-md-4'><select class='input-group input-by-me' name='nguyenvong"+ nv +"' id='cars'><option value='volvo'>Volvo</option><option value='saab'>Saab</option><option value='mercedes'>Mercedes</option><option value='audi'>Audi</option></select>  </div> <div class='col-md-4'></div>");
+        var html = $('#nguyenvong1').html();
+
+        html.replace('nguyenvong1','nguyenvong'+nv);
+    alert(html);
+        
+        $("#nguyenvong").append("<div class='col-md-4'><p style=' line-height: 3;'> Nguyện Vọng "+ nv +" :</p></div><div class='col-md-4'><select class='input-group input-by-me' name='nguyenvong"+nv+"' id='cars'>"+html+"</select>  </div> <div class='col-md-4'></div>");
 }
 else{
     alert("Chỉ được tối đa 3 nguyện vọng");

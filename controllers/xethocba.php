@@ -243,11 +243,18 @@
              <!-- <input  class="input-group input-by-me" type="number" id="quantity"name="number" value="2020" min="1" max="3"> -->
         </div>
         <div class="col-md-4">
-                      <select class="input-group input-by-me" name="nguyenvong1" id="cars">
-                            <option value="volvo">Volvo</option>
-                            <option value="saab">Saab</option>
-                            <option value="mercedes">Mercedes</option>
-                            <option value="audi">Audi</option>
+        <select class="input-group input-by-me" name="nguyenvong1" id="nguyenvong1">
+                    <?php 
+                       $sql = "SELECT * FROM `nguyenvong`";
+                       $result = $conn->query($sql);
+                       
+                       if ($result->num_rows > 0) {
+                         
+                         while($row = $result->fetch_assoc()) {
+                           echo " <option value='".$row['nguyen_vong']."'>".$row['nguyen_vong']." </option>";
+                         }
+                       } 
+                       ?>
                     </select>
         </div>
       
