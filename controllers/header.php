@@ -63,7 +63,7 @@ function myFunction() {
          ) 
          {
              
-             alert("Tên Môn không được để trống");
+             alert("Chưa nhập đủ thông tin");
             return false;
         }
 }
@@ -74,7 +74,7 @@ function themnguyenvong() {
         var html = $('#nguyenvong1').html();
 
         html.replace('nguyenvong1','nguyenvong'+nv);
-    alert(html);
+    // alert(html);
         
         $("#nguyenvong").append("<div class='col-md-4'><p style=' line-height: 3;'> Nguyện Vọng "+ nv +" :</p></div><div class='col-md-4'><select class='input-group input-by-me' name='nguyenvong"+nv+"' id='cars'>"+html+"</select>  </div> <div class='col-md-4'></div>");
 }

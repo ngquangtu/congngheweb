@@ -36,7 +36,7 @@
                                     type="text" placeholder="Tìm kiếm..">
                                 <div class="input-group-append"><button class="btn btn-light" type="button"
                                         style="background-color: rgb(27,51,170);color: rgb(255,255,255);">Tìm
-                                    </button><a href="login.php"><input type="button" value="Đăng nhập"></a>
+                                    </button><a href="http://localhost/web/controllers/login.php"><input type="button" value="Đăng nhập"></a>
                                 </div>
                             </div>
                             
@@ -475,7 +475,7 @@
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="assets/js/smoothproducts.min.js"></script>
-    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/theme.js"></script>      
 </body>
 
 </html>

@@ -104,6 +104,10 @@ foreach ($_FILES["hocba"]["error"] as $key => $error){
    } else {
    echo "Error: " . $sql . "<br>" . $conn->error;
     }
+    $sql ="INSERT INTO `taikhoan`(`email`, `pass`, `role`) VALUES ('$email','$SDT',0)";
+    if ($conn->query($sql) === TRUE) {
+      echo "New record created successfully";
+      }
  
  $conn->close();
 

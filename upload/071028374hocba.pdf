@@ -1,0 +1,89 @@
+-- phpMyAdmin SQL Dump
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Oct 01, 2020 at 10:49 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.2.29
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `web`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `thisinh`
+--
+
+CREATE TABLE `thisinh` (
+  `id` int(11) NOT NULL,
+  `ho` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `ten` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `ngay_sinh` date NOT NULL,
+  `CMND` int(11) NOT NULL,
+  `gioi_tinh` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `SDT` varchar(12) COLLATE utf8_unicode_ci NOT NULL,
+  `tinh_thuong_tru` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `quan_huyen_thuong_tru` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `phuong_xa_thuong_tru` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `dia_chi_thuong_tru` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `tinh_tam_tru` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `quan_huyen_tam_tru` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `phuong_xa_tam_tru` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `dia_chi_tam_tru` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `truong_lop_12` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `ma_truong_lop_12` int(11) NOT NULL,
+  `ma_tinh_lop_12` int(11) NOT NULL,
+  `hanh_kiem_lop_12` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `hoc_luc_lop_12` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `nam_tot_nghiep` int(11) NOT NULL,
+  `nguyen_vong` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `toan` int(11) NOT NULL DEFAULT 0,
+  `van` int(11) NOT NULL DEFAULT 0,
+  `anh` int(11) NOT NULL DEFAULT 0,
+  `vat_ly` int(11) NOT NULL DEFAULT 0,
+  `hoa` int(11) NOT NULL DEFAULT 0,
+  `sinh` int(11) NOT NULL DEFAULT 0,
+  `su` int(11) NOT NULL DEFAULT 0,
+  `dia_ly` int(11) NOT NULL DEFAULT 0,
+  `GDCD` int(11) NOT NULL DEFAULT 0,
+  `hinh_anh` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `hoc_ba` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `thisinh`
+--
+ALTER TABLE `thisinh`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `thisinh`
+--
+ALTER TABLE `thisinh`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -4,25 +4,49 @@
     //include("../view/login.html");
     include("../lib/connection.php");
 
+    // if($_POST){
+    //     $email = $_POST['email'];
+    //     $password = $_POST['password'];
+    //     $sql = "SELECT * FROM taikhoan WHERE email = '$email' AND pass = '$password'";
+    //     $query = mysqli_query($conn, $sql);
+    //     $row = mysqli_fetch_row($query);
+
+    //     if($row[1] == $email && $row[2] == $password){
+    //         $count = mysqli_num_rows($query);
+    //         if($count == 1){
+    //             $_SESSION['username'] = $email;
+    //             $_SESSION['phanquyen'] = $row[3];
+    //             header('Location: quanlyhoso.php');
+    //         }else{
+    //             header('Location: ../index.php');
+    //         }
+    //     }else{
+    //         echo "<script type='text/javascript'>alert('Wrong email or password. Please re-enter!');</script>";
+    //     }
+    // }
+
     if($_POST){
         $email = $_POST['email'];
         $password = $_POST['password'];
-        $sql = "SELECT * FROM taikhoan WHERE email = '$email' AND passwd = '$password'";
-        $query = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_row($query);
+        $sql ="SELECT * FROM taikhoan WHERE email = '$email' AND pass = '$password'";
+        $result = $conn->query($sql);
+        
+        if ($result->num_rows > 0) {
+            $_SESSION['username'] = $email;
+             $_SESSION['phanquyen'] = $row['role'];
+                if (  $_SESSION['phanquyen']==0){
+                    header('Location: infoHS.php');
+                }
+                else{
+                    header('Location: quanlyhoso.php');
+                }
 
-        if($row[1] == $email && $row[2] == $password){
-            $count = mysqli_num_rows($query);
-            if($count == 1){
-                $_SESSION['username'] = $email;
-                $_SESSION['phanquyen'] = $row[3];
-                header('Location: ../index.php');
-            }else{
-                header('Location: ../index.php');
-            }
-        }else{
-            echo "<script type='text/javascript'>alert('Wrong email or password. Please re-enter!');</script>";
-        }
+        } 
+        else{
+                    echo "<script type='text/javascript'>alert('Wrong email or password. Please re-enter!');</script>";
+                }
+             
+         $conn->close();
     }
 ?>
 

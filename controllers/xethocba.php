@@ -69,53 +69,44 @@
 
 
     <div class="col-md-4">
-        <!-- <input class="input-group input-by-me" type="text" placeholder="Tỉnh / Thành phố tạm trú"  name="thanhphotamtru"> -->
-        <input class="input-group input-by-me" list="listthanhpho"   placeholder="Tỉnh / Thành phố thường trú"  id="thanhphothuongtru" name="thanhphothuongtru" >
-                <datalist id="listthanhpho">
-                       <?php 
-                       $sql = "SELECT * FROM `devvn_tinhthanhpho`";
-                       $result = $conn->query($sql);
-                       
-                       if ($result->num_rows > 0) {
-                         // output data of each row
-                         while($row = $result->fetch_assoc()) {
-                           echo " <option value=' ".$row['name']."'>";
-                         }
-                       } 
-                       ?>
-                </datalist>  
+        
+    <select class="custom-select" name="thanhphothuongtru" id="tp">
+      <?php
+                $sql = "SELECT * FROM devvn_tinhthanhpho";
+                $result = $conn->query($sql);
+                
+                if ($result->num_rows > 0) {
+                    echo '   <option>---chọn Thành Phố---</option>';
+
+                  while($row = $result->fetch_assoc()) {
+                    echo "<option value='".$row['name']."'   data-data='".$row['matp']."' >".$row['name']."</option>";
+                  }
+                }
+                
+                ?>
+        <!-- <option></option>
+        <option></option>
+        <option></option> -->
+      </select>
+
+
     </div>
     <div class="col-md-4">
-    <input class="input-group input-by-me" list="listquanhuyen"  placeholder="Quận / huyện thường trú" id="quanhuyenthuongtru"  name="quanhuyenthuongtru" >
-                <datalist id="listquanhuyen">
-                       <?php 
-                       $sql = "SELECT * FROM `devvn_quanhuyen`";
-                       $result = $conn->query($sql);
-                       
-                       if ($result->num_rows > 0) {
-                         // output data of each row
-                         while($row = $result->fetch_assoc()) {
-                           echo " <option value=' ".$row['name']."'>";
-                         }
-                       } 
-                       ?>
-                </datalist>  
-    </div>
+  
+                <select class="form-control" name="quanhuyenthuongtru" id="qh">
+                                <option></option>
+                                <option></option>
+                                <option></option>
+          </select>
+    </div> 
     <div class="col-md-4">
-    <input class="input-group input-by-me" list="listxapuong"  placeholder="Phường / xã thường trú" id="phuongxathuongtru"  name="phuongxathuongtru" >
-                <datalist id="listxapuong">
-                       <?php 
-                       $sql = "SELECT * FROM `devvn_xaphuongthitran`";
-                       $result = $conn->query($sql);
-                       
-                       if ($result->num_rows > 0) {
-                         // output data of each row
-                         while($row = $result->fetch_assoc()) {
-                           echo " <option value=' ".$row['name']."'>";
-                         }
-                       } 
-                       ?>
-                </datalist>  
+
+                <select class="form-control" name="phuongxathuongtru" id="px">
+                                <option></option>
+                                <option></option>
+                                <option></option>
+          </select>
+               
     </div>
 
 
@@ -138,53 +129,44 @@
 
 
     <div class="col-md-4">
-        <!-- <input class="input-group input-by-me" type="text" placeholder="Tỉnh / Thành phố tạm trú"  name="thanhphotamtru"> -->
-        <input class="input-group input-by-me" list="listthanhpho2"   placeholder="Tỉnh / Thành phố tạm trú"  name="thanhphotamtru" >
-                <datalist id="listthanhpho2">
-                       <?php 
-                       $sql = "SELECT * FROM `devvn_tinhthanhpho`";
-                       $result = $conn->query($sql);
-                       
-                       if ($result->num_rows > 0) {
-                         // output data of each row
-                         while($row = $result->fetch_assoc()) {
-                           echo " <option value=' ".$row['name']."'>";
-                         }
-                       } 
-                       ?>
-                </datalist>  
+        
+    <select class="custom-select" name="thanhphotamtru" id="tp2">
+      <?php
+                $sql = "SELECT * FROM devvn_tinhthanhpho";
+                $result = $conn->query($sql);
+                
+                if ($result->num_rows > 0) {
+                    echo '   <option>---chọn Thành Phố---</option>';
+
+                  while($row = $result->fetch_assoc()) {
+                    echo "<option value='".$row['name']."'   data-data3='".$row['matp']."' >".$row['name']."</option>";
+                  }
+                }
+                
+                ?>
+        <!-- <option></option>
+        <option></option>
+        <option></option> -->
+      </select>
+
+
     </div>
     <div class="col-md-4">
-    <input class="input-group input-by-me" list="listquanhuyen2"  placeholder="Quận / huyện tạm trú"  name="quanhuyentamtru" >
-                <datalist id="listquanhuyen2">
-                       <?php 
-                       $sql = "SELECT * FROM `devvn_quanhuyen`";
-                       $result = $conn->query($sql);
-                       
-                       if ($result->num_rows > 0) {
-                         // output data of each row
-                         while($row = $result->fetch_assoc()) {
-                           echo " <option value=' ".$row['name']."'>";
-                         }
-                       } 
-                       ?>
-                </datalist>  
-    </div>
+  
+                <select class="form-control" name="quanhuyentamtru" id="qh2">
+                                <option></option>
+                                <option></option>
+                                <option></option>
+          </select>
+    </div> 
     <div class="col-md-4">
-    <input class="input-group input-by-me" list="listxaphuong2"  placeholder="Phường / xã tạm trú"  name="phuongxatamtru" >
-                <datalist id="listxaphuong2">
-                       <?php 
-                       $sql = "SELECT * FROM `devvn_xaphuongthitran`";
-                       $result = $conn->query($sql);
-                       
-                       if ($result->num_rows > 0) {
-                         // output data of each row
-                         while($row = $result->fetch_assoc()) {
-                           echo " <option value=' ".$row['name']."'>";
-                         }
-                       } 
-                       ?>
-                </datalist>  
+
+                <select class="form-control" name="phuongxatamtru" id="px2">
+                                <option></option>
+                                <option></option>
+                                <option></option>
+          </select>
+               
     </div>
 
 
