@@ -10,7 +10,7 @@
    include("../storage/PHPMailer-master/src/OAuth.php");
    include("../storage/PHPMailer-master/src/POP3.php");
    include("../storage/PHPMailer-master/src/SMTP.php");
-   
+   $date = date("d/m/Y h:i:a");
    use PHPMailer\PHPMailer\PHPMailer;
    use PHPMailer\PHPMailer\Exception;
    include("header.php");  
@@ -125,11 +125,12 @@ foreach ($_FILES["hocba"]["error"] as $key => $error){
 
 
 
+
    $sql = "INSERT INTO `thisinh`(  `ho`, `ten`, `ngay_sinh`, `CMND`, `gioi_tinh`, `SDT`, `email`, `khuvuc`, `doituong`, `tinh_thuong_tru`, `quan_huyen_thuong_tru`, `phuong_xa_thuong_tru`, `dia_chi_thuong_tru`, `tinh_tam_tru`, `quan_huyen_tam_tru`, `phuong_xa_tam_tru`, `dia_chi_tam_tru`, `truong_lop_12`, `ma_truong_lop_12`, `ma_tinh_lop_12`, `hanh_kiem_lop_12`, `hoc_luc_lop_12`, `nam_tot_nghiep`, `nguyen_vong_1`,`nguyen_vong_2`,`nguyen_vong_3`, `toan`, `van`, `anh`, `vat_ly`, `hoa`, `sinh`, `su`, `dia_ly`, `GDCD`, `hinh_anh`, `hoc_ba`) VALUES ('$ho', '$ten', '$ngaysinh',$CMND,'$gioitinh','$SDT','$email','$khuvucuutien','$doituonguutien','$thanhphothuongtru','$quanhuyenthuongtru','$phuongxathuongtru','$diachithuongtru','$thanhphotamtru','$quanhuyentamtru','$phuongxathuongtru','$diachitamtru','$truong12',$matruonglop12,$matinhlop12,'$hanhkiemlop12','$hocluclop12',$namtotnghiep ,'$nguyenvong1','$nguyenvong2','$nguyenvong3',$toan,$van,$anh,$vatly,$hoa,$sinh,$su,$dia,$GDCD,'$nameFile1','$nameFile2')";
   if ($conn->query($sql) === TRUE) {
    echo "    <h2> Nộp học bạ thành công </h2>
    <p style='text-'>Kiểm tra mail từ 3-4 ngày để xác nhận nhập học</p>";
-   $sql ="INSERT INTO `lichsu`( `tac_vu`, `thoi_gian`, `nguoi_thuc_hien`, `id_nguoi_thuc_hien`) VALUES ('Thêm Hồ Sơ','$date','$email')";
+   $sql ="INSERT INTO `lichsu`( `tac_vu`, `thoi_gian`, `nguoi_thuc_hien`) VALUES ('Thêm Hồ Sơ','$date','$email')";
    if ($conn->query($sql) === TRUE) {
    
      }
@@ -157,14 +158,14 @@ foreach ($_FILES["hocba"]["error"] as $key => $error){
         $mail->isSMTP(); // Set mailer to use SMTP
         $mail->Host = 'smtp.gmail.com;'; // Specify main and backup SMTP servers
         $mail->SMTPAuth = true; // Enable SMTP authentication
-        $mail->Username = 'nguyentiendat099912c1@gmail.com'; // SMTP username
-        $mail->Password = 'thptyla12c1'; // SMTP password
+        $mail->Username = 'hieunn72@wru.vn'; // SMTP username
+        $mail->Password = 'Hieu301199'; // SMTP password
         $mail->SMTPSecure = 'tls'; // Enable TLS encryption, `ssl` also accepted
         $mail->Port = 587; // TCP port lớn connect to
         $mail->CharSet = 'UTF-8';
 
         //Recipients
-        $mail->setFrom('nguyentiendat099912c1@gmail.com', 'Đại Học Thủy Lợi');
+        $mail->setFrom('hieunn72@wru.vn', 'Đại Học Thủy Lợi');
         $mail->addAddress($email, $ho." ".$ten ); // Add a recipient
         // $mail->addAddress('ellen@example.com'); // Name is optional
         // $mail->addReplyTo('info@example.com', 'Information');
@@ -183,8 +184,8 @@ foreach ($_FILES["hocba"]["error"] as $key => $error){
      
         }
         catch (Exception $e){
-         echo "<script type='text/javascript'>alert('Không thành công'); window.location='xethocba.php'</script>";
-
+         // echo "<script type='text/javascript'>alert('Không thành công'); window.location='xethocba.php'</script>";
+echo $e;
          // header('Location: xethocba.php');
 
         }

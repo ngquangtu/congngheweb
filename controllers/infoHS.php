@@ -1,5 +1,9 @@
 <?php
- session_start();
+//  session_start();
+ if(!isset($_SESSION)){
+  session_start();
+}
+
  error_reporting(E_ALL);
  include("../lib/connection.php");
  include("header.php");  
@@ -15,12 +19,16 @@
      $email=$row['email'];
     
   }
-//  include("../lib/connection.php");  
- if((isset($_SESSION['username'])&&$_SESSION['phanquyen']==1) ||$_SESSION['username'] == trim($email)){
-    
+  $x=null;
+//  include("../lib/connection.php"); 
+if(isset($_SESSION['username'])){
+  $x=$_SESSION['username'];
+}
+ if((isset($_SESSION['username']) && $_SESSION['phanquyen']==1) || $x== trim($email)){
  }
  else{
-     header("Location: ../index.php");
+  echo "<script type='text/javascript'> window.location='../index.php'</script>";
+
  }
   //  include("../lib/connection.php");
   //  include("phpunit.php");  
