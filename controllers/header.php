@@ -1,8 +1,26 @@
+<?php 
+//  error_reporting(E_ALL);
+if(!isset($_SESSION)){
+    session_start();
+}
+if ( isset($_SESSION['username'])){
+   $x=$_SESSION['username'];
+   $sql = "SELECT * FROM `thisinh` WHERE `email`='$x'";
+   $result = $conn->query($sql);
+   if ($result->num_rows > 0) {
+     $row = $result->fetch_assoc();
+      $id=$row['id'];
+      echo $id."-".$_SESSION['username'];
+     
+   }
+}
+?>
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Trang chủ</title>
     <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
@@ -68,27 +86,27 @@ function myFunction() {
         }
 }
 var nv = 1
-function themnguyenvong() {
-    nv++;
-    if(nv<=3){
-        var html = $('#nguyenvong1').html();
+        function themnguyenvong() {
+            nv++;
+            if(nv<=3){
+                var html = $('#nguyenvong1').html();
 
-        html.replace('nguyenvong1','nguyenvong'+nv);
-    // alert(html);
-        
-        $("#nguyenvong").append("<div class='col-md-4'><p style=' line-height: 3;'> Nguyện Vọng "+ nv +" :</p></div><div class='col-md-4'><select class='input-group input-by-me' name='nguyenvong"+nv+"' id='cars'>"+html+"</select>  </div> <div class='col-md-4'></div>");
-}
-else{
-    alert("Chỉ được tối đa 3 nguyện vọng");
+                html.replace('nguyenvong1','nguyenvong'+nv);
+            // alert(html);
+                
+                $("#nguyenvong").append("<div class='col-md-4'><p style=' line-height: 3;'> Nguyện Vọng "+ nv +" :</p></div><div class='col-md-4'><select class='input-group input-by-me' name='nguyenvong"+nv+"' id='cars'>"+html+"</select>  </div> <div class='col-md-4'></div>");
+        }
+        else{
+            alert("Chỉ được tối đa 3 nguyện vọng");
 
-}
-   }
+        }
+        }
 
 
 </script>
 <body>
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-        <div class="container"><img src="../assets/img/logo.png"><button data-toggle="collapse" class="navbar-toggler"
+        <div class="container"><a href="../index.php"><img src="../assets/img/logo.png"></a><button data-toggle="collapse" class="navbar-toggler"
                 data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
                     class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
@@ -98,9 +116,32 @@ else{
                         <form class="form-inline search-form">
                             <div class="input-group">
                                
-                                <div class="input-group-append"> <a href="tracuuhoso.php"><button class="btn btn-light" type="button"
+                                <div class="input-group-append">
+
+
+
+                                 <?php
+                                 if(isset($id)){
+                                 echo "<a href='infoHS.php?id=".$id."' style='font-size: 30px;color:blue;'>
+                                 <i style='color: darkslateblue;  margin-right: 15px;margin-top: 6px;' class='far fa-address-book'></i>
+                                 </a>" ;} ?>
+                                 
+                                 
+                                 
+                                 <a href="tracuuhoso.php"><button class="btn btn-light" type="button"
                                         style="background-color: rgb(27,51,170);color: rgb(255,255,255);">Tra cứu
-                                    </button></a><a href="login.php"><input type="button" value="Đăng nhập"></a>
+                                    </button></a>  
+                                    <?php if(isset($_SESSION['username'])){
+                                        echo " <a href='logout.php'><input type='button' value='Đăng Xuất'></a>";
+                                    }
+                                    else{
+                                        echo " <a href='login.php'><input type='button' value='Đăng nhập'></a>";
+                                    }
+                                    
+                                    ?>
+                                   
+
+
                                 </div>
                             </div>
                             

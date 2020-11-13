@@ -86,6 +86,21 @@ $(document).ready(
             
                                     }
                                 );
+
+                                $("#chonbieudo").change(function(){
+                                    var bieudo = $(this).val();
+
+                                    // var bd = document.getElementById("bieudo");
+                                    $("#bieudo").empty();
+                                    var a= "<h2>Phổ Điểm Môm "+bieudo+"</h2><img  src=http://localhost/web/controllers/"+bieudo+".php alt=''>"
+                                    $("#bieudo").append(a);
+
+
+                                    console.log(bieudo);
+                                   
+                                  
+
+                                })
     }
 );
 // $(document).ready(function(){

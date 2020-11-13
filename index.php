@@ -1,3 +1,5 @@
+<?php session_start();?>
+
 <!DOCTYPE html>
 <html>
 
@@ -58,9 +60,9 @@
             <div class="container">
                 <div class="menu flex">
                     <div class="block-heading" style="margin-top: -50px;">
-                        <h5 class="text-info cursor"><a href="http://www.tlu.edu.vn/dam-bao-chat-luong"><img
+                        <h5 class="text-info cursor"><a href="controllers/xethocba.php"><img
                                     src="http://www.tlu.edu.vn/portals/0/images/front/quality.jpg" alt=""></a></h5>
-                        <a href="http://www.tlu.edu.vn/dam-bao-chat-luong">Xét tuyển học bạ</a>
+                        <a href="controllers/xethocba.php">Xét tuyển học bạ</a>
                     </div>
                     <div class="block-heading" style="margin-top: -50px;">
                         <h5 class="text-info cursor"><a href="#"><img src="assets/img/scenery/tintuc.jpg" alt=""></a>

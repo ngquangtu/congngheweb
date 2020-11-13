@@ -1,12 +1,15 @@
 <?php
     session_start();
     error_reporting(E_ALL);
-    //include("../view/home.html");
+    // include("../view/home.html");
     include("../lib/connection.php");  
-    // if(!isset($_SESSION['username'])){
-    //     header("Location: ../index.php");
-    // }
-    //echo $_SESSION['username'];
+    if(isset($_SESSION['username'])&&$_SESSION['phanquyen']==1){
+       
+    }
+    else{
+        header("Location: ../index.php");
+    }
+ 
 ?>
 <html>
 
@@ -35,10 +38,10 @@
                 <hr class="sidebar-divider my-0">
                 <ul class="nav navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="home.php"><i class="fas fa-tachometer-alt"></i><span >&nbsp;TRANG CHỦ</span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="tracuu.php"><i class="fas fa-tachometer-alt"></i><span >&nbsp;TRA CỨU THÔNG TIN</span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="mail.php"><i class="fas fa-tachometer-alt"></i><span >&nbsp;MAIL</span></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="quanlyhoso.php"><i class="fas fa-tachometer-alt"></i><span >&nbsp;TRA CỨU THÔNG TIN</span></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="thongke.php"><i class="fas fa-tachometer-alt"></i><span >&nbsp;THỐNG KÊ</span></a></li>
                     <?php
-                        if($_SESSION['phanquyen'] == 0){
+                        if($_SESSION['phanquyen'] == 1){
                             echo "<li class='nav-item' role='presentation' id='lichsu'><a class='nav-link active' href='lichsu.php'><i class='fas fa-tachometer-alt'></i><span >&nbsp;LỊCH SỬ</span></a></li>";  
                         }
                     ?>
@@ -71,7 +74,7 @@
                                     <div class="row align-items-center no-gutters">
                                         <div class="col mr-2">
                                             <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span></span></div>
-                                            <div class="text-dark font-weight-bold h5 mb-0"><span><a href="tracuu.php">NHÂN SỰ&nbsp;</span></a></div>
+                                            <div class="text-dark font-weight-bold h5 mb-0"><span><a href="quanlyhoso.php">HỒ SƠ&nbsp;</span></a></div>
                                         </div>
                                     <div class="col-auto"><i class="fas fa-calendar fa-2x text-gray-300"></i></div>
                                 </div>
@@ -84,7 +87,7 @@
                                 <div class="row align-items-center no-gutters">
                                     <div class="col mr-2">
                                         <div class="text-uppercase text-success font-weight-bold text-xs mb-1"></div>
-                                        <div class="text-dark font-weight-bold h5 mb-0"><span><a href="soyeulilich.php">SƠ YẾU Ý LỊCH&nbsp;</span></a></span></div>
+                                        <div class="text-dark font-weight-bold h5 mb-0"><span><a href="thongke.php">THỐNG KÊ&nbsp;</span></a></span></div>
                                     </div>
                                     <div class="col-auto"><i class="fas fa-dollar-sign fa-2x text-gray-300"></i></div>
                                 </div>

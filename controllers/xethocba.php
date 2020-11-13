@@ -51,13 +51,14 @@
         </div>
         <div class="col-md-4">
                       <select class="input-group input-by-me" name="doituonguutien" >
+                            <option value="DT0">NONE</option>
                             <option value="DT1">Đối Tượng 1</option>
                             <option value="DT2">Đối Tượng 2</option>
                             <option value="DT3">Đối Tượng 3</option>
                             <option value="DT4">Đối Tượng 4</option>
                             <option value="DT5">Đối Tượng 5</option>
                             <option value="DT6">Đối Tượng 6</option>
-                            <option value="DT7">Đối Tượng 6</option>
+                            <option value="DT7">Đối Tượng 7</option>
                     </select>
         </div>
      </div>
@@ -227,6 +228,8 @@
         <div class="col-md-4">
         <select class="input-group input-by-me" name="nguyenvong1" id="nguyenvong1">
                     <?php 
+
+
                        $sql = "SELECT * FROM `nguyenvong`";
                        $result = $conn->query($sql);
                        
@@ -236,6 +239,7 @@
                            echo " <option value='".$row['nguyen_vong']."'>".$row['nguyen_vong']." </option>";
                          }
                        } 
+
                        ?>
                     </select>
         </div>

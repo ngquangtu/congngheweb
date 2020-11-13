@@ -2,7 +2,7 @@
 <?php
 
 $servername = "localhost";
-$database = "web";
+$database = "cnw";
 $username = "root";
 $password = "";
 // Create connection

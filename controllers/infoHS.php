@@ -1,28 +1,120 @@
 <?php
-   include("../lib/connection.php");
-   include("header.php");  
- $ho                = $_GET['id'];
+ session_start();
+ error_reporting(E_ALL);
+ include("../lib/connection.php");
+ include("header.php");  
 
- $sql = "SELECT  * FROM thisinh WHERE id ='$ho'";
+ // include("../view/home.html");
+
+ $id                = $_GET['id'];
+
+  $sql = "SELECT * FROM `thisinh` WHERE `id`='$id'";
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+     $email=$row['email'];
+    
+  }
+//  include("../lib/connection.php");  
+ if((isset($_SESSION['username'])&&$_SESSION['phanquyen']==1) ||$_SESSION['username'] == trim($email)){
+    
+ }
+ else{
+     header("Location: ../index.php");
+ }
+  //  include("../lib/connection.php");
+  //  include("phpunit.php");  
+ 
+   
+//  $id                = $_GET['id'];
+function check ($doituong,$vung,$tennganh){
+  include("../lib/connection.php");
+  $sql = "SELECT * FROM `nguyenvong` WHERE `nguyen_vong`='$tennganh'";
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+     $a=$row['diem_xet_tuyen'];
+     $b=$row['khoi_xet_tuyen'];
+  }
+    switch ($doituong) {
+      case "DT1":
+      case "DT2":
+      case "DT3":
+      case "DT4":
+        $doituong =2;
+          break;
+      case "DT5":
+      case "DT6":
+      case "DT7" :
+        $doituong =1;
+          break;
+      case "DT0" :
+     $doituong =0;
+         break;
+  }
+  switch ($vung) {
+    case "KV1":
+      $vung =0.75;
+         break;
+    case "KV2":
+      $vung =0.5;
+    break;
+    case "KV2-NT":
+      $vung =0.25;
+    break;
+    case "KV3":
+      $vung =0;
+    break;
+    
+}
+    global $A1,$A,$A2,$B,$C,$D;
+    switch ($b) {
+      case "A":
+        $b =$A;
+          break;
+      case "A1":
+        $b =$A1;
+          break;
+      case "A2":
+        $b =$A2;
+          break;
+      case "B":
+        $b =$B;
+          break;
+      case "C":
+        $b =$C;
+          break;
+      case "D":
+        $b =$D;
+          break;
+  }
+
+  $diemtong=$doituong+$b+$vung;
+  if($diemtong<$a){
+    return "Không Đỗ";
+  }
+  else{
+    return "Đỗ";
+  }
+ 
+}
+
+
+
+ $sql = "SELECT  * FROM thisinh WHERE id ='$id'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-  // output data of each row
-  while($row = $result->fetch_assoc()) {
-    echo "<tr>
-    <td>".$row['ho']."</td>
-    <td>".$row['ten']."</td>
-    <td>".$row['CMND']."</td>
-    <td><a href='xemHS.php?id=".$row['id']."'>Xem</a></td>
-
-    <td><a href='xl_editHS.php?id=".$row['id']."'>Sửa</a></td>
-    <td><a href='xl_deleteHS.php?id=".$row['id']."'  onclick=\"if (!confirm('Bạn có chắc chắn muốn xóa bản ghi này không?')) { return false }\">Xóa</a></td>
-  </tr>";
+  $row = $result->fetch_assoc();
+    $A=$row['toan'] + $row['vat_ly'] + $row['hoa'];
+    $A1=$row['toan'] + $row['vat_ly'] + $row['anh'];
+    $A2=$row['toan'] + $row['vat_ly'] + $row['sinh'];
+    $B=$row['toan'] + $row['hoa'] + $row['sinh'];
+    $C=$row['van'] + $row['su'] + $row['dia_ly'];
+    $D=$row['van'] + $row['toan'] + $row['anh'];
   }
-} 
-     
- $conn->close();
- ?>
+  ?>
+ 
 
 
 <h2>Thông Tin Hồ Sơ</h2>
@@ -31,55 +123,74 @@ if ($result->num_rows > 0) {
     <div class="row">
     <div class="col-md-8  ">
 
-    <h3 class="float-left">Nguyễn Tiến Đạt</h3>
+    <h3 class="float-left"><?php echo $row['ho']." ".$row['ten']?></h3>
 
     <table class="if">
         <tr>
           <th>Ngày Sinh :</th>
-          <td>22/09/1999</td>
+          <td><?php echo $row['ngay_sinh']?></td>
         </tr>
         <tr>
           <th>Giới tính :</th>
-          <td>Nam</td>
+          <td><?php echo $row['gioi_tinh']?></td>
         </tr>
         <tr>
           <th>CMND :</th>
-          <td>071045737</td>
+          <td><?php echo $row['CMND']?></td>
         </tr>
         <tr>
           <th>SDT :</th>
-          <td>0837561353</td>
+          <td><?php echo $row['SDT']?></td>
         </tr>
         <tr>
           <th>Email :</th>
-          <td>datnt72@wru.vn</td>
+          <td><?php echo $row['email']?></td>
         </tr>
         <tr>
           <th>Địa chỉ thường trú :</th>
-          <td>22/09/1999</td>
+          <td><?php echo $row['dia_chi_thuong_tru']?></td>
         </tr>
         <tr>
           <th>Địa chỉ tạm trú :</th>
-          <td>22/09/1999</td>
+          <td><?php echo $row['dia_chi_tam_tru']?></td>
         </tr>
         <tr>
           <th>Khu vực :</th>
-          <td>22/09/1999</td>
+          <td><?php echo $row['khuvuc']?></td>
         </tr>
         <tr>
           <th>Đối tượng ưu tiên :</th>
-          <td>22/09/1999</td>
+          <td><?php echo $row['doituong']?></td>
         </tr>
     </table>
 
    <hr class="hr">
     <h5 class="float-left">Nguyện Vọng</h5>
     <table class="if-lop12">
-        <tr>
-          <th> Nguyện vọng 1 :</th>
-          <td>Công Nghệ Thông Tin</td>
+      
+      <?php
+       if($row['nguyen_vong_1']!=""){
+        echo "<tr>
+        <th> Nguyện vọng 1 :</th>
+        <td>". $row['nguyen_vong_1']."</td>
+        <td>".check($row['doituong'],$row['khuvuc'],$row['nguyen_vong_1'])."</td>
+      </tr>";
+      }
+        if($row['nguyen_vong_2']!=""){
+          echo "<tr>
+          <th> Nguyện vọng 2 :</th>
+          <td>". $row['nguyen_vong_2']."</td>
+          <td>".check($row['doituong'],$row['khuvuc'],$row['nguyen_vong_2'])."</td>
+        </tr>";
+        }
+        if($row['nguyen_vong_3']!=""){
+          echo "<tr>
+          <th> Nguyện vọng 3 :</th>
+          <td>". check($row['doituong'],$row['khuvuc'],$row['nguyen_vong_3'])."</td>
           <td>Đỗ</td>
-        </tr>
+        </tr>";
+        }
+      ?>
         
     
     </table>
@@ -89,15 +200,15 @@ if ($result->num_rows > 0) {
     <table class="if-lop12">
         <tr>
           <th>Trường Lớp 12 :</th>
-          <td>Tốt</td>
+          <td><?php echo $row['truong_lop_12']?></td>
         </tr>
         <tr>
           <th>Mã trường 12 :</th>
-          <td>Tốt</td>
+          <td><?php echo $row['ma_truong_lop_12']?></td>
         </tr>
         <tr>
           <th>Hạnh Kiểm :</th>
-          <td>Tốt</td>
+          <td><?php echo $row['hanh_kiem_lop_12']?></td>
         </tr>
         <tr>
           <th>Học lực :</th>
@@ -110,39 +221,39 @@ if ($result->num_rows > 0) {
     <table class="if-diem">
         <tr>
           <th>Toán :</th>
-          <td>9</td>
+          <td><?php echo $row['toan']?></td>
         </tr>
         <tr>
           <th>Văn :</th>
-          <td>0</td>
+          <td><?php echo $row['van']?></td>
         </tr>
         <tr>
           <th>Anh :</th>
-          <td>0</td>
+          <td><?php echo $row['anh']?></td>
         </tr>
         <tr>
           <th>Vật Lý :</th>
-          <td>9</td>
+          <td><?php echo $row['vat_ly']?></td>
         </tr>
         <tr>
           <th>Hóa :</th>
-          <td>6</td>
+          <td><?php echo $row['hoa']?></td>
         </tr>
         <tr>
           <th>Sinh :</th>
-          <td>2</td>
+          <td><?php echo $row['sinh']?></td>
         </tr>
         <tr>
           <th>Sử :</th>
-          <td>2</td>
+          <td><?php echo $row['su']?></td>
         </tr>
         <tr>
           <th>Địa :</th>
-          <td>2</td>
+          <td><?php echo $row['dia_ly']?></td>
         </tr>
         <tr>
           <th>GDCD :</th>
-          <td>2</td>
+          <td><?php echo $row['GDCD']?></td>
         </tr>
     </table>
 
@@ -151,32 +262,50 @@ if ($result->num_rows > 0) {
     <table class="if-lop12">
         <tr>
           <th>Khối A :</th>
-          <td>Tốt</td>
+          <td><?php echo $A?></td>
+        </tr>
+        <tr>
+          <th>Khối A1 :</th>
+          <td><?php echo $A1?></td>
+        </tr>
+        <tr>
+          <th>Khối A2 :</th>
+          <td><?php echo $A2?></td>
         </tr>
         <tr>
           <th>Khối B :</th>
-          <td>Tốt</td>
+          <td><?php echo $B?></td>
         </tr>
         <tr>
           <th>Khối C :</th>
-          <td>Tốt</td>
+          <td><?php echo $C?></td>
         </tr>
         <tr>
           <th>Khối D :</th>
-          <td>Tốt</td>
+          <td><?php echo $D?></td>
         </tr>
     
     </table>
 
     </div>
     <div class="col-md-4">
-    <img src="https://static.topcv.vn/avatars/oN1zOKxZLyukjCPSIjVA_5f45830121ac5_cvtpl.jpg?1603005732" style="width:150px; margin-top:40px;" alt="">
+    <img src="<?php echo $row['hinh_anh'];?>" style="width:150px; margin-top:40px;" alt=""></br>
+    
      </div>
+     <div class="col-md-6"><a style="margin-top:20px;margin-bottom:10px;" class="btn btn-primary float-right" href="<?php echo $row['hoc_ba'];?>">Xem Học Bạ</a></div>
+     <div class="col-md-2">
+     <a href="sua.php?id=<?php echo $row['id']; ?>" style="margin-top:20px;margin-bottom:10px;" class="btn btn-primary float-right">Sửa</a>
+     </div>
+
     </div>
-  
+
   </div>
 
+  <?php
 
+     
+ $conn->close();
+ ?>
 
 <?php
      include("footer.php");  

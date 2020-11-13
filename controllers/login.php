@@ -1,5 +1,7 @@
 <?php
-    session_start();
+    if(!isset($_SESSION)){
+        session_start();
+    }
     error_reporting(E_ALL);
     //include("../view/login.html");
     include("../lib/connection.php");
@@ -32,13 +34,16 @@
         $result = $conn->query($sql);
         
         if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            // $_SESSION['name'] = $row['ho']." ".$row['ten'];
             $_SESSION['username'] = $email;
              $_SESSION['phanquyen'] = $row['role'];
-                if (  $_SESSION['phanquyen']==0){
-                    header('Location: infoHS.php');
+                if ( $_SESSION['phanquyen']==1){
+                    header('Location: home.php');
                 }
                 else{
-                    header('Location: quanlyhoso.php');
+                    header('Location: ../index.php');
+                    // echo $_SESSION['phanquyen'];
                 }
 
         } 

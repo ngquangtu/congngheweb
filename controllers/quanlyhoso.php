@@ -1,4 +1,16 @@
 <?php
+if(!isset($_SESSION)){
+  session_start();
+}
+ error_reporting(E_ALL);
+ // include("../view/home.html");
+ include("../lib/connection.php");  
+ if(isset($_SESSION['username'])&&$_SESSION['phanquyen']==1){
+    
+ }
+ else{
+     header("Location: ../index.php");
+ }
    include("../lib/connection.php");
    include("header.php"); 
 ?>
@@ -18,9 +30,13 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
+         <th>Họ Tên</th>
+        <th>Ngày Sinh</th>
+        <th>Giới Tính</th>
+        <th>CMND</th>
         <th>Email</th>
+        <th>Trường</th>
+
       </tr>
     </thead>
     <tbody id="myTable">
@@ -33,9 +49,12 @@ if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
     echo "<tr>
-    <td>".$row['ho']."</td>
-    <td>".$row['ten']."</td>
+    <td>".$row['ho']." ".$row['ten']."</td>
+    <td>".$row['ngay_sinh']."</td>
+    <td>".$row['gioi_tinh']."</td>
     <td>".$row['CMND']."</td>
+    <td>".$row['email']."</td>
+    <td>".$row['truong_lop_12']."</td>
     <td><a href='infoHS.php?id=".$row['id']."'>Xem</a></td>
 
   </tr>";
@@ -45,21 +64,7 @@ if ($result->num_rows > 0) {
  $conn->close();
      
      ?>
-      <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-        <td>mary@mail.com</td>
-      </tr>
-      <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@greatstuff.com</td>
-      </tr>
-      <tr>
-        <td>Anja</td>
-        <td>Ravendale</td>
-        <td>a_r@test.com</td>
-      </tr>
+      
     </tbody>
   </table>
   </div>
